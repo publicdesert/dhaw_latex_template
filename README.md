@@ -21,4 +21,4 @@ Wir gehen davon aus, dass bereits ein Latex-Compiler installiert ist.
 5. Das Template verwendet römische Seitennummerierung für Verzeichnisse und Anhänge und arabische Nummerierung für den Kernteil. Aktuell muss nach der Rückkehr zur römischen Nummerierung der Counter für die Seitenzahlen manuell angepasst werden. Dies geschieht am Ende der `./main.tex`-Datei (`\setcounter{page}{5}`).
 
 ## Anregungen/Probleme
-Für Anregungen oder Probleme kannst du gerne ein Issue erstellen hier auf Github erstellen.
+Für Anregungen oder Probleme kannst du gerne ein Issue hier auf Github erstellen.
