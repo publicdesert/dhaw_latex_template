@@ -1,0 +1,165 @@
+\documentclass[a4paper,12pt]{report}
+
+% Kodierung und Sprache
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[german]{babel}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+
+% Für Blindtext. Kann entfernt werden.
+\usepackage{lipsum}
+
+% Titel, Autor, etc
+\newcommand{\printAuthorName}{Max Mustermann}
+\newcommand{\printAuthorMail}{max.mustermann@example.com}
+\newcommand{\printDocumentTitle}{Titel meiner Studienarbeit}
+\newcommand{\printDocumentSubject}{Mensch-Maschine-Interaktion}
+\newcommand{\printCourseOfStudy}{Informatik}
+\newcommand{\printDocumentDate}{\today}
+
+% Farben definieren
+\definecolor{dhaw_red}{RGB}{112, 18, 42}
+
+% Seitenränder
+\usepackage[
+    includeheadfoot,
+    top=1.25cm,
+    bottom=1.25cm,
+    left=2.5cm,
+    right=2.5cm
+]{geometry}
+
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    pdfauthor={\printAuthorName},
+    pdftitle={\printDocumentTitle},
+    pdfsubject={\printDocumentSubject},
+}
+
+% Literatur
+\usepackage[backend=biber,style=apa,hyperref=true]{biblatex}
+\addbibresource{literature/literature.bib}
+
+% Kopf- und Fußzeile definieren
+\pagestyle{fancy}
+\fancyhf{} % alle Kopf-/Fußzeilen-Einträge leeren
+
+\fancyhead[L]{\color{dhaw_red}{\textbf{\printDocumentTitle}}}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrule}{\color{dhaw_red}%
+  \hrule width\headwidth height\headrulewidth
+  \vskip-\headrulewidth
+}
+
+% Linien konfigurieren
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Genug Platz für die Kopfzeile
+\setlength{\headheight}{14pt}
+\setlength{\headsep}{10pt}
+
+% Plain-Stil anpassen (für Kapitelanfang usw.)
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[L]{\color{dhaw_red}{\textbf{\printDocumentTitle}}}
+  \fancyfoot[R]{\thepage}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0pt}
+  \renewcommand{\headrule}{\color{dhaw_red}%
+    \hrule width\headwidth height\headrulewidth
+    \vskip-\headrulewidth
+  }
+}
+
+\setstretch{1.5}
+
+% Kapitelüberschriften anpassen
+\titleformat{\chapter}[hang]
+  {\normalfont\huge\bfseries}
+  {\thechapter}
+  {1em}
+  {}
+
+% Abstände vor und nach Kapiteln
+\titlespacing*{\chapter}{0pt}{-10pt}{10pt}
+\titlespacing*{\section}{0pt}{5pt}{5pt}
+
+\linespread{1.213}
+
+\begin{document}
+
+
+% Titelseite
+\begin{titlepage}
+  \newgeometry{margin=0mm}
+  \thispagestyle{empty} % keine Kopf-/Fußzeile
+  \noindent
+  \colorbox{dhaw_red}{
+    \parbox[c][0.25\paperheight][c]{\paperwidth}{%
+      \centering
+      \vspace{1cm}
+      \hspace*{-10.5cm}\includegraphics[height=3.17cm]{dhaw_logo.png}\\[2cm]
+    }
+  }
+
+  \vspace{3cm}
+  \noindent
+  \hspace{2.5cm}
+  \begin{minipage}{\dimexpr\paperwidth - 2.5cm - 2.5cm\relax}
+    {\huge \textbf{\printDocumentTitle}}\\[1cm]
+    \textbf{Studiengang:} \printCourseOfStudy\\
+    \textbf{Modul:} \printDocumentSubject\\
+    \rule{\textwidth}{1pt}\\
+    \textbf{Name:} \printAuthorName\\
+    \textbf{E-Mail-Adresse:} \printAuthorMail\\
+    \textbf{Datum:} \printDocumentDate\\
+  \end{minipage}
+\end{titlepage}
+\restoregeometry
+
+% Wechsel zu römischen Seitenzahlen für äußere Seiten
+\pagenumbering{Roman}
+
+\tableofcontents
+
+\chapter*{Abkürzungsverzeichnis}
+\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+
+\listoffigures
+\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+
+\listoftables
+\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+
+\cleardoublepage
+% Wechsel zu arabischen Seitenzahl für eigtl. Arbeit
+\pagenumbering{arabic}
+
+% Eigentlicher Text wird aus anderem Verzeichnis inkludiert. Hier wird eine Datei für alle Kapitel verwendet.
+% Je nach Umfang der Arbeit können auch einzelne Dateien pro Kaptiel inkludiert werden.
+\include{content/main.tex}
+
+\cleardoublepage
+% Wechsel zu römischen Zahlen für restliche äußere Seiten
+\pagenumbering{Roman}
+\setcounter{page}{5} % Counter muss hier manuell angepasst werden
+
+\printbibliography
+\addcontentsline{toc}{chapter}{Literatur}
+
+\chapter*{Anhang}
+\addcontentsline{toc}{chapter}{Anhang}
+\include{content/attachments.tex}
+
+\end{document}
