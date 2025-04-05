@@ -17,5 +17,8 @@ Wir gehen davon aus, dass bereits ein Latex-Compiler installiert ist.
 
 3. Standardmäßig inkludiert `./main.tex` die Datei `./content/main.tex`, welche für den Inhalt der eigentlichen Arbeit vorgesehen ist. Diese ist mit ein wenig Platzhalterinhalt gefüllt. Diesen kannst du löschen und mit dem schreiben deiner Arbeit beginnen. Für größere Arbeiten bietet es sich an, die Kapitel in einzelne Dateien aufzuteilen. Dafür können in der `./main.tex` einfach die Includes angepasst werden.
 
-4. Vom Template wird eine Bibtex-Datei unter `./literature/literature.tex` eingelesen. So können diverse Literaturverwaltungsprogramme wie etwa Zotero direkt verwendet werden.
+4. Vom Template wird eine Bibtex-Datei unter `./literature/literature.bib` eingelesen. So können diverse Literaturverwaltungsprogramme wie etwa Zotero direkt verwendet werden.
 5. Das Template verwendet römische Seitennummerierung für Verzeichnisse und Anhänge und arabische Nummerierung für den Kernteil. Aktuell muss nach der Rückkehr zur römischen Nummerierung der Counter für die Seitenzahlen manuell angepasst werden. Dies geschieht am Ende der `./main.tex`-Datei (`\setcounter{page}{5}`).
+
+## Anregungen/Probleme
+Für Anregungen oder Probleme kannst du gerne ein Issue erstellen hier auf Github erstellen.
